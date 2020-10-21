@@ -8,6 +8,9 @@ const db = require("./models");
 
 const app = express();
 
+const exercisesController = require("./controllers/exercisesController");
+const workoutsController = require("./controllers/workoutsController");
+
 app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
@@ -19,10 +22,29 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 });
+
+const connection = mongoose.connection;
+
+connection.on("connected", () => {
+  console.log("Mongoose successfully connected.");
+});
+
+connection.on("error", (err) => {
+  console.log("Mongoose connection error: ", err);
+});
+
+app.get("/api/config", (req, res) => {
+  res.json({
+    success: true,
+  });
+});
+
+app.use(exercisesController);
+app.use(workoutsController);
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`App running on port ${PORT}!`);
-  });
+  console.log(`App running on port http://localhost:${PORT}`);
+});
