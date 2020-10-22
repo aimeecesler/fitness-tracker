@@ -8,7 +8,7 @@ const db = require("./models");
 
 const app = express();
 
-const workoutsController = require("./controllers/workoutsController");
+const controller = require("./controllers/controller");
 
 app.use(logger("dev"));
 
@@ -40,7 +40,7 @@ app.get("/api/config", (req, res) => {
   });
 });
 
-app.use(workoutsController);
+app.use(controller);
 
 // Start the server
 app.listen(PORT, () => {
