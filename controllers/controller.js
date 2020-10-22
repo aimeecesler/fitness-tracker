@@ -8,7 +8,14 @@ router.get("/api/workouts", (req, res) => {
     .then((workouts) => {
       res.json(workouts);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      res.json({
+        error: true,
+        data: null,
+        message: "Failed to retrieve workouts.",
+      });
+    });
 });
 
 module.exports = router;
