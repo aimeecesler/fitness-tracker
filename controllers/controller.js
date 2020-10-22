@@ -3,6 +3,7 @@ const router = express.Router();
 
 const db = require("../models");
 
+// Find all workouts
 router.get("/api/workouts", (req, res) => {
   db.Workout.find()
     .then((workouts) => {
@@ -17,7 +18,8 @@ router.get("/api/workouts", (req, res) => {
       });
     });
 });
-
+// TODO: Figure out what the range is supposed to be - one week?
+// Find all workouts within a range
 router.get("/api/workouts/range", (req, res) => {
   db.Workout.find()
     .then((workoutsInRange) => {
@@ -33,6 +35,7 @@ router.get("/api/workouts/range", (req, res) => {
     });
 });
 
+// create a new workout
 router.post("/api/workouts", (req, res) => {
   db.Workout.create(req.body)
     .then((newWorkout) => {
@@ -48,6 +51,7 @@ router.post("/api/workouts", (req, res) => {
     });
 });
 
+// add an exercise to an existing workout
 router.put("/api/workouts/:id", (req, res) => {
   db.Workout.findByIdAndUpdate(req.params.id, {
     $push: { exercises: req.body },
