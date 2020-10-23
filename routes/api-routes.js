@@ -24,7 +24,7 @@ router.get("/api/workouts/range", (req, res) => {
   console.log(new Date(new Date().setDate(new Date().getDate() - 7)))
   db.Workout.find({
     day: {
-      '$gt': new Date(new Date().setDate(new Date().getDate() - 7)),
+      $gt: new Date(new Date().setDate(new Date().getDate() - 7)),
     },
   })
     .then((workoutsInRange) => {
