@@ -45,7 +45,17 @@ ADD TEXT
 
 ## Acceptance Criteria
 
- :heavy_check_mark:
+When the user loads the page, they should be given the option to create a new workout or continue with their last workout. :heavy_check_mark:
+
+The user should be able to:
+
+- Add exercises to a previous workout plan. :heavy_check_mark:
+
+- Add new exercises to a new workout plan. :heavy_check_mark:
+
+- View the combined weight of multiple exercises on the `stats` page. :heavy_check_mark:
+
+Must be deployed to Heroku using MongoDB Atlas. :heavy_check_mark:
 
 ---
 
@@ -58,10 +68,11 @@ As always, a huge thanks to our instructional staff for all their hard work!
 - [w3schools](https://www.w3schools.com)
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
-- [MongoDB]()
-- [Mongoose]()
-- [MongoDB Atlas]()
-- [Morgan.js]()
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose.js](https://mongoosejs.com/)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- [Morgan.js](https://www.npmjs.com/package/morgan)
+- [Heroku](https://heroku.com)
 
 ---
 
