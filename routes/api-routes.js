@@ -19,9 +19,10 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
-// Find all workouts within a range
+// Find all workouts within a range (7)
 router.get("/api/workouts/range", (req, res) => {
-  db.Workout.find({}).limit(7)
+  db.Workout.find({})
+    .limit(7)
     .then((workoutsInRange) => {
       res.json(workoutsInRange);
     })
@@ -53,20 +54,51 @@ router.post("/api/workouts", (req, res) => {
 
 // add an exercise to an existing workout
 router.put("/api/workouts/:id", (req, res) => {
-  db.Workout.findByIdAndUpdate(req.params.id, {
-    $push: { exercises: req.body },
-  })
-    .then((updatedWorkout) => {
-      res.json(updatedWorkout);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json({
-        error: true,
-        data: null,
-        message: "Failed to update workout.",
-      });
+  const exercise = req.body;
+  console.log(exercise);
+  // ADDING INPUT VALIDATION HERE SINCE FRONT END DOESN'T HAVE ANY FOR BLANK EXERCISES
+  if (
+    exercise.type === "resistance" &&
+    (exercise.name === "" ||
+      exercise.weight === 0 ||
+      exercise.sets === 0 ||
+      exercise.reps === 0 ||
+      exercise.duration === 0)
+  ) {
+    console.log("Failed to update workout. Input fields cannot be empty.");
+    res.json({
+      error: true,
+      data: null,
+      message: "Failed to update workout. Input fields cannot be empty.",
     });
+  } else if (
+    exercise.type === "cardio" &&
+    (exercise.name === "" || 
+    exercise.distance === 0 || 
+    exercise.duration === 0)
+  ) {
+    console.log("Failed to update workout. Input fields cannot be empty.");
+    res.json({
+      error: true,
+      data: null,
+      message: "Failed to update workout. Input fields cannot be empty.",
+    });
+  } else {
+    db.Workout.findByIdAndUpdate(req.params.id, {
+      $push: { exercises: req.body },
+    })
+      .then((updatedWorkout) => {
+        res.json(updatedWorkout);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({
+          error: true,
+          data: null,
+          message: "Failed to update workout.",
+        });
+      });
+  }
 });
 
 module.exports = router;
