@@ -44,7 +44,7 @@ Some of these issues include:
 - The charts and graphs do not account for multiple workouts in the same day, if this happens they just count them as two separate days.
 - The days of the week do not actually match up to the correct days of the week when rendered.
 - It was confirmed with TA's that the .limit(7) method was the correct way to complete the /api/workouts/range route, however this just gives 7 individual workouts, not 7 days of workouts, but given the first & second issues on this list it wouldn't matter because they wouldn't be accounted for correctly anyways.
-- The .limit(7) method also has the issue that it gives you the first 7 workouts, not the last 7 (I sorted in reverse order and took the .limit(7) from that)
+- The .limit(7) method also has the issue that it gives you the first 7 workouts, not the last 7 (I sorted in reverse order and took the .limit(7) from that).
 - The form to create a new exercise does not disable the "Add Exercise" or "Complete" buttons after the first new exercise is added, so if you click either one again when the form is blank you get an empty exercise in your array. I added validation on the back-end but without being able to edit the front end code, there is no way to alert the user of the error.
 
 ---
