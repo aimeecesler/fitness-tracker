@@ -9,7 +9,7 @@ const db = require("./models");
 
 const app = express();
 
-const controller = require("./controllers/controller");
+const apiRoutes = require("./routes/api-routes");
 
 app.use(logger("dev"));
 
@@ -41,7 +41,7 @@ app.get("/api/config", (req, res) => {
   });
 });
 
-app.use(controller);
+app.use(apiRoutes);
 
 app.get("/exercise", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/exercise.html"))
