@@ -1,7 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const path = require("path")
+const path = require("path");
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,6 +10,7 @@ const db = require("./models");
 const app = express();
 
 const apiRoutes = require("./routes/api-routes");
+const htmlRoutes = require("./routes/html-routes");
 
 app.use(logger("dev"));
 
@@ -35,20 +36,14 @@ connection.on("error", (err) => {
   console.log("Mongoose connection error: ", err);
 });
 
-app.get("/api/config", (req, res) => {
-  res.json({
-    success: true,
-  });
-});
+// app.get("/api/config", (req, res) => {
+//   res.json({
+//     success: true,
+//   });
+// });
 
 app.use(apiRoutes);
-
-app.get("/exercise", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/exercise.html"))
-})
-app.get("/stats", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/stats.html"))
-})
+app.use(htmlRoutes);
 
 // Start the server
 app.listen(PORT, () => {
