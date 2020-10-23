@@ -18,10 +18,15 @@ router.get("/api/workouts", (req, res) => {
       });
     });
 });
-// TODO: Figure out what the range is supposed to be - one week?
+// TODO: Why is my date range not giving me all the days?
 // Find all workouts within a range
 router.get("/api/workouts/range", (req, res) => {
-  db.Workout.find()
+  console.log(new Date(new Date().setDate(new Date().getDate() - 7)))
+  db.Workout.find({
+    day: {
+      '$gt': new Date(new Date().setDate(new Date().getDate() - 7)),
+    },
+  })
     .then((workoutsInRange) => {
       res.json(workoutsInRange);
     })
