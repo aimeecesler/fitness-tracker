@@ -23,6 +23,7 @@ router.get("/api/workouts", (req, res) => {
 router.get("/api/workouts/range", (req, res) => {
   db.Workout.find({})
     .limit(7)
+    .sort({day: -1})
     .then((workoutsInRange) => {
       res.json(workoutsInRange);
     })
