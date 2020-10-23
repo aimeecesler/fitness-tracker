@@ -2,9 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-ADD TEXT
-
-![Main]()
+![Main](./public/images/main.PNG)
+![Dashboard](./public/images/dashboard.PNG)
 
 ---
 
@@ -39,7 +38,13 @@ Edit using VSCode after [installation](#installation). Config, routes, models, p
 
 ## Building the Application
 
-ADD TEXT
+For this application we were given the front end code and tasked with developing the back end routes based on the front end requests. Overall there were not a lot of challenges with the back-end, however there were a few issues with the front-end code that I was not able to fix due to the assignment stating we could not touch the front end code. 
+
+Some of these issues include:
+- The charts and graphs do not account for multiple workouts in the same day, if this happens they just count them as two separate days.
+- The days of the week do not actually match up to the correct days of the week when rendered.
+- It was confirmed with TA's that the .limit(7) method was the correct way to complete the /api/workouts/range route, however this just gives 7 individual workouts, not 7 days of workouts, but given the first & second issues on this list it wouldn't matter because they wouldn't be accounted for correctly anyways.
+- The for to create a new exercise does not disable the "Add Exercise" or "Complete" buttons after the first new exercise is added, so if you click either one again when the form is blank you get an empty exercise in your array. I added validation on the back-end but without being able to edit the front end code, there is no way to alert the user of the error.
 
 ---
 
